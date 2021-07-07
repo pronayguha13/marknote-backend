@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "notes",
+  "info": {
+    "name": "note",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "UNTITLED",
+      "required": true
+    },
+    "author": {
+      "type": "email",
+      "required": true
+    },
+    "content": {
+      "type": "richtext",
+      "required": true,
+      "default": "# New note"
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": true
+    },
+    "UUID": {
+      "type": "string",
+      "unique": true
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "notes"
+    }
+  }
+}
