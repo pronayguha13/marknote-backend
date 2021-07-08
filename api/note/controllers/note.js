@@ -16,7 +16,11 @@ module.exports = {
 
   async findByUUID(ctx) {
     const { UUID } = ctx.params;
-    const entity = await strapi.query("note").findOne({ UUID });
-    return sanitizeEntity(entity, { model: strapi.models.note });
+    const entity = await strapi.query("note").findOne({ UUID, isPublic: true });
+    if (entity) {
+      return sanitizeEntity(entity, { model: strapi.models.note });
+    } else {
+      return {};
+    }
   },
 };
